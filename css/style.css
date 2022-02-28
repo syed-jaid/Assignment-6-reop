@@ -1,3 +1,16 @@
-h1{
-    color: darkblue;
+/* search input and button  */
+#input-fild{
+    border: 2px solid rgb(115, 203, 214);
+    font-size: 25px;
+}
+#button-addon2{
+    font-size: 25px;
+    background-color: rgb(159, 233, 238);
+    padding-left: 40px;
+    padding-right: 40px;
+}
+/* cards button  */
+#button-details{
+background-color: rgb(144, 238, 255);
+border: 2px solid rgb(101, 102, 102);
 }
