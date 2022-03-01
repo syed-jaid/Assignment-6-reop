@@ -39,6 +39,12 @@ const displayPhoneCard = (data) => {
         childh1.innerHTML = `Sorry no phone found`
         mainDetails.appendChild(childh1);
     }
+    const buttonDiv = document.createElement('div')
+    buttonDiv.innerHTML = `<button onclick="displayall()">Show all</button>`
+    if (datacall == true) {
+        mainDiv.appendChild(buttonDiv)
+    }
+
 }
 const phoneDetails = (id) => {
     console.log(id);
@@ -48,7 +54,6 @@ const phoneDetails = (id) => {
 }
 
 const displayDetails = (data) => {
-    console.log(data.data);
     mainDetails.innerHTML = '';
     const phoneInfo = data.data;
     const childDiv2 = document.createElement('div');
@@ -115,4 +120,31 @@ const displayDetails = (data) => {
     }
 
 
+}
+const displayall = () => {
+
+    mainDiv.innerHTML = '';
+    mainDetails.innerHTML = '';
+    const inputValue = document.getElementById('input-fild').value;
+    fetch(`https://openapi.programming-hero.com/api/phones?search=${inputValue}`)
+        .then((res) => res.json())
+        .then(data => displayallCard(data))
+}
+// display phone info in Card
+const displayallCard = (data) => {
+    const phonearray = data.data;
+    phonearray.forEach(info => {
+        const childDiv = document.createElement('div');
+        childDiv.classList.add('col');
+        childDiv.innerHTML = `
+            <div id="card-div" class="card  mx-auto h-100 w-75">
+              <img src="${info.image}" class=" card-img-top h-75 w-100" alt="...">
+              <div class="card-body">
+                <h4 class="card-title"><span class="fw-bold">Name : </span> ${info.phone_name}</h4>
+                <h4 class="card-title"><span class="fw-bold">Brand : </span> ${info.brand}</h4>
+                <button type="button" onclick="phoneDetails('${info.slug}')" id="button-details" class="btn">Details</button>
+              </div>
+            </div>`;
+        mainDiv.appendChild(childDiv);
+    });
 }
