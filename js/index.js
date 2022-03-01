@@ -31,8 +31,8 @@ const displayPhoneCard = (data) => {
             childDiv.classList.add('col');
             // div inner HTML
             childDiv.innerHTML = `
-         <div id="card-div" class="card p-2 shadow rounded-3 mx-auto h-100 w-75">
-          <img src="${info.image}" class=" card-img-top h-75 w-100" alt="...">
+         <div id="card-div" class="card p-2 shadow rounded-3 mx-auto h-100 w-100">
+          <img src="${info.image}" class=" card-img-top h-75 w-75 mx-auto " alt="...">
           <div class="card-body">
             <h4 class="card-title"><span class="fw-bold">Name : </span> ${info.phone_name}</h4>
             <h4 class="card-title"><span class="fw-bold">Brand : </span> ${info.brand}</h4>
@@ -46,8 +46,10 @@ const displayPhoneCard = (data) => {
     // if input Value is not correct
     else {
         const mainDetails = document.getElementById('main-div');
-        const childh1 = document.createElement('h1');
-        childh1.innerHTML = `Sorry No Phone Found`
+        const childh1 = document.createElement('h2');
+        childh1.innerHTML = `
+        Searching phone is not available...
+        `
         mainDetails.appendChild(childh1);
     }
 
