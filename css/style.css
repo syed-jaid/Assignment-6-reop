@@ -12,11 +12,11 @@
 }
 /* cards button  */
 #button-details{
-background-color: rgb(144, 238, 255);
-border: 2px solid rgb(255, 255, 255);
+background-color: rgb(154, 240, 255);
+border: 2px solid rgb(212, 205, 205);
 }
 #card-div{
-background-color: rgb(240, 255, 255);
+background-color: rgb(232, 255, 246);
 }
 .card-body{
 color: rgb(79, 82, 82);
