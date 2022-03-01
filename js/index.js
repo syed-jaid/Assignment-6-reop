@@ -1,9 +1,11 @@
 console.log('allah')
 // main div 
 const mainDiv = document.getElementById('main-div')
+const mainDetails = document.getElementById('details-div')
 // api load 
 const loadApi = () => {
     mainDiv.innerHTML = '';
+    mainDetails.innerHTML = '';
     const inputValue = document.getElementById('input-fild').value;
     fetch(`https://openapi.programming-hero.com/api/phones?search=${inputValue}`)
         .then((res) => res.json())
@@ -14,18 +16,16 @@ const loadApi = () => {
 const displayPhoneCard = (data) => {
     const datacall = data.status;
     const phonearray = data.data;
-    // console.log(phonearray)
     if (datacall == true) {
         phonearray.slice(0, 20).forEach(info => {
-            // console.log(info);
             const childDiv = document.createElement('div');
             childDiv.classList.add('col');
             childDiv.innerHTML = `
         <div id="card-div" class="card  mx-auto h-100 w-75">
           <img src="${info.image}" class=" card-img-top h-75 w-100" alt="...">
           <div class="card-body">
-            <h4 class="card-title">${info.phone_name}</h4>
-            <h4 class="card-title">${info.brand}</h4>
+            <h4 class="card-title"><span class="fw-bold">Name : </span> ${info.phone_name}</h4>
+            <h4 class="card-title"><span class="fw-bold">Brand : </span> ${info.brand}</h4>
             <button type="button" onclick="phoneDetails('${info.slug}')" id="button-details" class="btn">Details</button>
           </div>
         </div>`;
@@ -33,11 +33,11 @@ const displayPhoneCard = (data) => {
         });
     }
     else {
-        console.log('allah')
         const mainDetails = document.getElementById('main-div');
-        const childDiv1 = document.createElement('div');
-        childDiv1.innerHTML = `<h1>no phone</h1>`
-        mainDetails.appendChild(childDiv1);
+        const childh1 = document.createElement('h1');
+        childh1.classList.add('class="text-center')
+        childh1.innerHTML = `Sorry no phone found`
+        mainDetails.appendChild(childh1);
     }
 }
 const phoneDetails = (id) => {
@@ -49,23 +49,70 @@ const phoneDetails = (id) => {
 
 const displayDetails = (data) => {
     console.log(data.data);
-    const mainDetails = document.getElementById('details-div')
+    mainDetails.innerHTML = '';
     const phoneInfo = data.data;
     const childDiv2 = document.createElement('div');
-    childDiv2.innerHTML = `
+    if (phoneInfo.releaseDate == '') {
+        childDiv2.innerHTML = `
+    <div>
     <img src="${phoneInfo.image}" class="card-img-top" alt="...">
+    </div>
+
     <div class="card-body">
-    <h4>name${phoneInfo.name}</h4>
-    <h4>brand${phoneInfo.brand}</h4>
-    <h6>${phoneInfo.releaseDate}</h6>
-    <p>storage:${phoneInfo.mainFeatures.storage}
-    <br>
-    displaySize:${phoneInfo.mainFeatures.displaySize}
-    chipSet:${phoneInfo.mainFeatures.chipSet}
-    memory:${phoneInfo.mainFeatures.memory}
-    memory:${phoneInfo.mainFeatures.sensors[2]}
-    </p>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item"><span class="fw-bold fs-5">Name : </span>${phoneInfo.name}</li>
+        <li class="list-group-item"><span class="fw-bold fs-5">Brand : </span>${phoneInfo.brand}</li>
+        <li class="list-group-item"><span class="fw-bold fs-5">releaseDate : </span>No releaseDate </li>
+        <li class="list-group-item">
+            <span class="fs-5 fw-bold">mainFeatures</span>
+            <br>
+            <span><span class="fw-bold">storage:</span>${phoneInfo.mainFeatures.storage}</span>
+            <br>
+            <span><span class="fw-bold">chipSet:</span>${phoneInfo.mainFeatures.chipSet}</span>
+            <br>
+            <span><span class="fw-bold">memory:</span>${phoneInfo.mainFeatures.memory}</span>
+        </li>
+        <li class="list-group-item">
+            <span class="fs-5 fw-bold">Sensors:</span>
+            <br>
+            <span><span class="fw-bold"></span>
+            ${phoneInfo.mainFeatures.sensors}</span>
+        </li>
+    </ul>
     </div>`
-    mainDetails.appendChild(childDiv2);
+        mainDetails.appendChild(childDiv2);
+
+    }
+    else {
+        childDiv2.innerHTML = `
+    <div>
+    <img src="${phoneInfo.image}" class="card-img-top" alt="...">
+    </div>
+
+    <div class="card-body">
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item"><span class="fw-bold fs-5">Name : </span>${phoneInfo.name}</li>
+        <li class="list-group-item"><span class="fw-bold fs-5">Brand : </span>${phoneInfo.brand}</li>
+        <li class="list-group-item"><span class="fw-bold fs-5">releaseDate : </span>${phoneInfo.releaseDate}</li>
+        <li class="list-group-item">
+            <span class="fs-5 fw-bold">mainFeatures</span>
+            <br>
+            <span><span class="fw-bold">storage:</span>${phoneInfo.mainFeatures.storage}</span>
+            <br>
+            <span><span class="fw-bold">chipSet:</span>${phoneInfo.mainFeatures.chipSet}</span>
+            <br>
+            <span><span class="fw-bold">memory:</span>${phoneInfo.mainFeatures.memory}</span>
+        </li>
+        <li class="list-group-item">
+            <span class="fs-5 fw-bold">Sensors:</span>
+            <br>
+            <span><span class="fw-bold"></span>
+            ${phoneInfo.mainFeatures.sensors}</span>
+        </li>
+    </ul>
+    </div>`
+        mainDetails.appendChild(childDiv2);
+    }
+
 
 }

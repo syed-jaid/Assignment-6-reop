@@ -1,8 +1,9 @@
-/* search input and button  */
+/* search input  */
 #input-fild{
     border: 2px solid rgb(115, 203, 214);
     font-size: 25px;
 }
+/* search button  */
 #button-addon2{
     font-size: 25px;
     background-color: rgb(159, 233, 238);
@@ -15,5 +16,8 @@ background-color: rgb(144, 238, 255);
 border: 2px solid rgb(255, 255, 255);
 }
 #card-div{
-background-color: rgb(255, 255, 255);
+background-color: rgb(240, 255, 255);
+}
+.card-body{
+color: rgb(79, 82, 82);
 }
