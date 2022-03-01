@@ -1,3 +1,4 @@
+
 /* search input  */
 #input-fild{
     border: 2px solid rgb(115, 203, 214);
@@ -17,7 +18,8 @@ border: 2px solid rgb(212, 205, 205);
 }
 #card-div{
 background-color: rgb(232, 255, 246);
+
 }
 .card-body{
-color: rgb(79, 82, 82);
+color: rgb(60, 61, 61);
 }

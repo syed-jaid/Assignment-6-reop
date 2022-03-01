@@ -73,19 +73,18 @@ const phoneDetails = (id) => {
 
 // display Details to the Header 
 const displayDetails = (data) => {
-    mainDetails.innerHTML = '';
+    // mainDetails.innerHTML = '';
     const phoneInfo = data.data;
     // creating the div 
     const childDiv2 = document.createElement('div');
-    console.log(phoneInfo.mainFeatures.displaySize);
 
     // if release date is empty string 
     if (phoneInfo.releaseDate == '') {
         // seting inner HTML to the details div     
         childDiv2.innerHTML = `
-    <div class="border border-white">
+    <div class="border border-white ">
         <div>
-    <img src="${phoneInfo.image}" class="card-img-top p-2" alt="...">
+    <img src="${phoneInfo.image}" class="card-img-top p-2 mt-4" alt="...">
     </div>
     <div class="card-body">
     <ul class="list-group list-group-flush">
@@ -119,9 +118,9 @@ const displayDetails = (data) => {
     else {
         // seting inner HTML to the details div   
         childDiv2.innerHTML = `
-    <div class="border border-white">
+    <div class="border border-white ">
             <div>
-            <img src="${phoneInfo.image}" class="card-img-top p-2" alt="...">
+            <img src="${phoneInfo.image}" class="card-img-top p-2 mt-4" alt="...">
             </div>
 
             <div class="card-body">
