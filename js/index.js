@@ -12,13 +12,15 @@ const loadApi = () => {
 
 // display phone info in Card
 const displayPhoneCard = (data) => {
+    const datacall = data.status;
     const phonearray = data.data;
     // console.log(phonearray)
-    phonearray.slice(0, 20).forEach(info => {
-        // console.log(info);
-        const childDiv = document.createElement('div');
-        childDiv.classList.add('col');
-        childDiv.innerHTML = `
+    if (datacall == true) {
+        phonearray.slice(0, 20).forEach(info => {
+            // console.log(info);
+            const childDiv = document.createElement('div');
+            childDiv.classList.add('col');
+            childDiv.innerHTML = `
         <div id="card-div" class="card  mx-auto h-100 w-75">
           <img src="${info.image}" class=" card-img-top h-75 w-100" alt="...">
           <div class="card-body">
@@ -27,8 +29,16 @@ const displayPhoneCard = (data) => {
             <button type="button" onclick="phoneDetails('${info.slug}')" id="button-details" class="btn">Details</button>
           </div>
         </div>`;
-        mainDiv.appendChild(childDiv);
-    });
+            mainDiv.appendChild(childDiv);
+        });
+    }
+    else {
+        console.log('allah')
+        const mainDetails = document.getElementById('main-div');
+        const childDiv1 = document.createElement('div');
+        childDiv1.innerHTML = `<h1>no phone</h1>`
+        mainDetails.appendChild(childDiv1);
+    }
 }
 const phoneDetails = (id) => {
     console.log(id);
